@@ -68,7 +68,7 @@ app.get('/generate-pdf', async (req, res) => {
     // Create a new page
     const page = await browser.newPage();
     //Get HTML content from HTML file
-    const html = readFileSync('sample.html', 'utf-8');
+    const html = readFileSync('temp/sample.html', 'utf-8');
 
     // var rendered
 
@@ -89,14 +89,14 @@ app.get('/generate-pdf', async (req, res) => {
 
     // Downlaod the PDF
     await page.pdf({
-        path: 'result.pdf',
+        path: 'temp/result.pdf',
         margin: { top: '100px', right: '50px', bottom: '100px', left: '50px' },
         printBackground: true,
         format: 'A4',
     })
 
     await browser.close();
-    const pdf = readFileSync('result.pdf');
+    const pdf = readFileSync('temp/result.pdf');
     res.contentType("application/pdf")
     res.send(pdf);
 })
