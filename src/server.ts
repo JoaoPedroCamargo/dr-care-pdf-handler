@@ -102,7 +102,7 @@ app.get('/generate-pdf', async (req, res) => {
 })
 
 app.get('/getLink', async (req, res) => {
-    res.send('https://google.com.br')
+    res.send({ message: 'https://google.com.br' })
 })
 
 app.listen(process.env.PORT || '3333', () => {
