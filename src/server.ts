@@ -64,7 +64,13 @@ app.post('/testePost', async (req, res) => {
 })
 
 app.get('/generate-pdf', async (req, res) => {
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        args: [
+            '--no-sandbox',
+            '--disable-setuid-sandbox'
+        ]
+    });
     // Create a new page
     const page = await browser.newPage();
     //Get HTML content from HTML file
