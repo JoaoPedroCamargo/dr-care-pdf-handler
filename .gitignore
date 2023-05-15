@@ -2,3 +2,5 @@ node_modules
 yarn.lock
 result.pdf
 index.js
+.gcloudignore
+app.yaml
