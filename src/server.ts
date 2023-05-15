@@ -105,6 +105,6 @@ app.get('/getLink', async (req, res) => {
     res.send('https://google.com.br')
 })
 
-app.listen('3333', () => {
+app.listen(process.env.PORT || '3333', () => {
     console.log(`Servidor rodando na porta 3333`)
 })
