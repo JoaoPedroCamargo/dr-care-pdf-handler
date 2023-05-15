@@ -67,25 +67,31 @@ app.post("/testePost", async (req, res) => {
     });
 });
 app.get("/generate-pdf", async (req, res) => {
-  const browser = await import_puppeteer.default.launch({ headless: "new" });
+  const browser = await import_puppeteer.default.launch({
+    headless: "new",
+    args: [
+      "--no-sandbox",
+      "--disable-setuid-sandbox"
+    ]
+  });
   const page = await browser.newPage();
-  const html = (0, import_fs.readFileSync)("temp/sample.html", "utf-8");
+  const html = (0, import_fs.readFileSync)("./temp/sample.html", "utf-8");
   await page.setContent(html, { waitUntil: "domcontentloaded" });
   await page.emulateMediaType("screen");
   await page.pdf({
-    path: "temp/result.pdf",
+    path: "./temp/result.pdf",
     margin: { top: "100px", right: "50px", bottom: "100px", left: "50px" },
     printBackground: true,
     format: "A4"
   });
   await browser.close();
-  const pdf = (0, import_fs.readFileSync)("temp/result.pdf");
+  const pdf = (0, import_fs.readFileSync)("./temp/result.pdf");
   res.contentType("application/pdf");
   res.send(pdf);
 });
 app.get("/getLink", async (req, res) => {
-  res.send("https://google.com.br");
+  res.send({ message: "https://google.com.br" });
 });
-app.listen("3333", () => {
+app.listen(process.env.PORT || "3333", () => {
   console.log(`Servidor rodando na porta 3333`);
 });
