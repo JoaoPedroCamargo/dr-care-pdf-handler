@@ -11,7 +11,7 @@
     "start:dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
     "postinstall": "tsup src --out-dir dist",
-    "build": "tsup src --out-dir build",
+    "build": "tsup src --out-dir dist",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "keywords": [],
