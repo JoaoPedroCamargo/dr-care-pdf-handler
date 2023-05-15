@@ -10,7 +10,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start:dev": "tsx watch src/server.ts",
     "start": "node dist/server.js",
-    "postinstall": "tsc",
+    "postinstall": "tsup src --out-dir dist",
+    "build": "tsup src --out-dir build",
     "deploy": "git add . && git commit -m Heroku && git push heroku master"
   },
   "keywords": [],
