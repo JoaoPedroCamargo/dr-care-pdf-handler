@@ -66,10 +66,7 @@ app.post('/testePost', async (req, res) => {
 app.get('/generate-pdf', async (req, res) => {
     const browser = await puppeteer.launch({
         headless: 'new',
-        args: [
-            '--no-sandbox',
-            '--disable-setuid-sandbox'
-        ]
+        args: ['--use-gl=egl'],
     });
     // Create a new page
     const page = await browser.newPage();
